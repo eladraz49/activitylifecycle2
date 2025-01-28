@@ -19,15 +19,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // קבלת הפניות לרכיבי ה-UI
         timeTextView = findViewById(R.id.timeTextView);
         resetButton = findViewById(R.id.resetButton);
-
-        // קביעת OnClickListener לכפתור איפוס
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resetTimer(); // איפוס זמן
+                resetTimer();
             }
         });
 
@@ -43,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        startTime = System.currentTimeMillis();  // זמן התחלה של הצגת האפליקציה
+        startTime = System.currentTimeMillis();
         Log.d("ActivityLifecycle", "onResume");
     }
 
@@ -51,9 +48,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         long elapsedTime = System.currentTimeMillis() - startTime;
-        totalTime += elapsedTime / 1000;  // המרת מילישניות לשניות
+        totalTime += elapsedTime / 1000;
         Log.d("ActivityLifecycle", "onPause. Time visible: " + elapsedTime / 1000 + " seconds.");
-        updateTimeDisplay();  // עדכון תצוגה
+        updateTimeDisplay();
     }
 
     @Override
@@ -62,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         long elapsedTime = System.currentTimeMillis() - startTime;
         totalTime += elapsedTime / 1000;
         Log.d("ActivityLifecycle", "onStop. Total time visible: " + totalTime + " seconds.");
-        updateTimeDisplay();  // עדכון תצוגה
+        updateTimeDisplay();
     }
 
     @Override
@@ -72,14 +69,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateTimeDisplay() {
-        // עדכון טקסט ב-TextView
         timeTextView.setText("Total time: " + totalTime + " seconds");
     }
 
     private void resetTimer() {
-        // איפוס הזמן הכולל
         totalTime = 0;
-        updateTimeDisplay();  // עדכון תצוגה
+        updateTimeDisplay();
         Log.d("ActivityLifecycle", "Timer reset");
     }
 }
